@@ -15,15 +15,20 @@ var moduleOpts = {
         presets: ['es2015', 'react']
       }
     }
-  ]
+  ],
 };
 
 module.exports = [
   {
+    target: 'node',
+    externals: {
+      "react": "react"
+    },
     context: context,
     entry: {
       'ErrorThrowingComponent': ['./ErrorThrowingComponent.jsx'],
       'HelloWorld': ['./HelloWorld.jsx'],
+      'HelloHook': ['./HelloHook.jsx'],
       'HelloWorldWrapper': ['./HelloWorldWrapper.jsx'],
       'PerfTestComponent': ['./PerfTestComponent.jsx'],
       'SyntaxErrorComponent': ['./SyntaxErrorComponent.jsx'],

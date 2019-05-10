@@ -10,6 +10,7 @@ COMPONENT_ROOT = os.path.join(os.path.dirname(__file__), 'components')
 
 PATH_TO_HELLO_WORLD_COMPONENT_JS = os.path.join(COMPONENT_ROOT, 'HelloWorldPlain.js')
 PATH_TO_HELLO_WORLD_COMPONENT_JSX = os.path.join(COMPONENT_ROOT, 'HelloWorld.js')
+PATH_TO_HELLO_HOOK_COMPONENT_JSX = os.path.join(COMPONENT_ROOT, 'HelloHook.js')
 PATH_TO_HELLO_WORLD_WRAPPER_COMPONENT = os.path.join(COMPONENT_ROOT, 'HelloWorldWrapper.js')
 PATH_TO_ERROR_THROWING_COMPONENT = os.path.join(COMPONENT_ROOT, 'ErrorThrowingComponent.js')
 PATH_TO_SYNTAX_ERROR_COMPONENT = os.path.join(COMPONENT_ROOT, 'SyntaxErrorComponent.js')
@@ -58,7 +59,7 @@ class TestDjangoReact(unittest.TestCase):
         self.assertNotEqual(markup, '<span>Hello world!</span>')
         self.assertIn('Hello ', markup)
         self.assertIn('world!', markup)
-        
+
     def test_render_component_returns_a_rendered_component(self):
         component = render_component(
             PATH_TO_HELLO_WORLD_COMPONENT_JSX,
@@ -140,3 +141,7 @@ class TestDjangoReact(unittest.TestCase):
     # TODO
     def test_component_source_is_watched_for_changes(self):
         pass
+
+    def test_component_with_hook(self):
+        component = render_component(PATH_TO_HELLO_HOOK_COMPONENT_JSX, to_static_markup=True)
+        self.assertEqual(str(component), '<div><button>Click Me</button></div>')
